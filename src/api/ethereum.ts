@@ -1,3 +1,4 @@
+import 'react-native-get-random-values';
 import {formatEther, InfuraProvider, Wallet} from 'ethers';
 import Config from 'react-native-config';
 
