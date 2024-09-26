@@ -62,10 +62,15 @@ To get started with the project, follow these steps:
    ```
 
 4. **Set up Ethereum Provider**:
-   Add your Ethereum provider API key (e.g., Infura) in the `src/api/ethereum.ts` file:
-   ```typescript
-   const provider = new ethers.providers.InfuraProvider('mainnet', 'YOUR_INFURA_API_KEY');
+   Create a `.env` file in the project root and add your Infura API key:
    ```
+   INFURA_API_KEY=your_infura_api_key_here
+   ```
+
+   To get an Infura API key:
+   - Sign up at [https://infura.io/](https://infura.io/)
+   - Create a new project and copy the API key
+   - Paste the API key in the `.env` file
 
 ## Running the App
 
@@ -130,13 +135,3 @@ Feel free to contribute to this project by submitting issues or pull requests. F
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](license.md) file for details.
-
-```
-
-### **Key Points in this README**:
-1. **Overview**: Gives a clear explanation of what the app does.
-2. **Installation & Setup**: Details on how to set up and run the app.
-3. **Usage Instructions**: Step-by-step guide for users on creating wallets, viewing balances, and sending transactions.
-4. **Important Notes**: Alerts users about security concerns in the demo setup (handling private keys, gas fees).
-5. **Future Enhancements**: Suggests improvements for future versions of the app.
-6. **Contributing Section**: Encourages open-source contributions.

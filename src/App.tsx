@@ -9,8 +9,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Drawer.Navigator>
-        <Drawer.Screen name="Balance" component={Balance} />
         <Drawer.Screen name="WalletCreate" component={WalletCreate} />
+        <Drawer.Screen name="Balance" component={Balance} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
