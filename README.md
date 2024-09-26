@@ -1,79 +1,142 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native Wallet App
 
-# Getting Started
+## Overview
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+This is a demo React Native application that allows users to:
+- **Create a new Ethereum wallet**.
+- **Display the balance** of their Ethereum wallet.
+- **Send transactions** to other Ethereum addresses.
 
-## Step 1: Start the Metro Server
+The app uses **ethers.js** to interact with the Ethereum blockchain and performs basic wallet operations such as generating a wallet, checking balance, and sending transactions.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Features
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- **Wallet Creation**: Generate a new Ethereum wallet (address and private key).
+- **Balance Display**: Fetch and display the wallet's balance in ETH.
+- **Transaction Sending**: Send a transaction by specifying the recipient's address and amount of ETH.
+- **Secure Private Key Handling**: Private key is securely stored only in memory during the session.
 
-```bash
-# using npm
-npm start
+## Project Structure
 
-# OR using Yarn
-yarn start
+```
+wallet-app/
+├── src/
+│   ├── api/                # Blockchain interaction code (Ethereum)
+│   │   └── ethereum.ts
+│   ├── components/         # UI components for wallet actions
+│   │   ├── Balance.tsx
+│   │   ├── SendTransactionForm.tsx
+│   │   └── WalletCreate.tsx
+│   ├── hooks/              # Custom hooks for managing wallet and balance
+│   │   ├── useWallet.ts
+│   │   └── useBalance.ts
+│   ├── App.tsx             # Main application entry point
+│   ├── Navigation.tsx      # Application navigation
+│   └── config.ts           # Configuration file for constants
+├── package.json
+└── tsconfig.json
 ```
 
-## Step 2: Start your Application
+## Installation
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+To get started with the project, follow these steps:
 
-### For Android
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/ihafkenschiel/web3-wallet
+   cd web3-wallet
+   ```
 
+2. **Install dependencies**:
+   Run the following command to install the project dependencies:
+   ```bash
+   yarn install
+   ```
+
+3. **Install Pods (iOS only)**:
+   Navigate to the `ios` directory and install CocoaPods:
+   ```bash
+   cd ios
+   pod install
+   cd ..
+   ```
+
+4. **Set up Ethereum Provider**:
+   Add your Ethereum provider API key (e.g., Infura) in the `src/api/ethereum.ts` file:
+   ```typescript
+   const provider = new ethers.providers.InfuraProvider('mainnet', 'YOUR_INFURA_API_KEY');
+   ```
+
+## Running the App
+
+### Android
+To run the app on an Android device or emulator:
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
 yarn android
 ```
 
-### For iOS
-
+### iOS
+To run the app on an iOS device or simulator:
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Metro Bundler
+Start the Metro bundler with the following command:
+```bash
+yarn start
+```
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## How to Use
 
-## Step 3: Modifying your App
+1. **Create a New Wallet**:
+   - On launch, you’ll be prompted to create a new wallet by clicking the "Create New Wallet" button. The app will generate an Ethereum address and private key.
+   
+2. **View Wallet Balance**:
+   - After creating a wallet, you’ll be navigated to the balance screen, where the balance of your Ethereum address will be displayed in ETH.
 
-Now that you have successfully run the app, let's modify it.
+3. **Send a Transaction**:
+   - To send ETH, navigate to the "Send Transaction" screen. Enter the recipient’s Ethereum address and the amount of ETH you want to send. Click "Send Transaction" to broadcast the transaction to the blockchain.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Important Notes
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- **Security**: This is a demo app and does not securely store private keys beyond the session. In production, consider using secure storage solutions like `react-native-keychain`.
+- **Gas Fees**: The app uses a fixed gas fee and gas limit. For production use, integrate dynamic gas price estimation based on network conditions.
+- **Ethereum Provider**: The app uses the Infura API to interact with the Ethereum network. Make sure you replace the API key with your own in the `ethereum.ts` file.
 
-## Congratulations! :tada:
+## Dependencies
 
-You've successfully run and modified your React Native App. :partying_face:
+- [React Native](https://reactnative.dev/)
+- [ethers.js](https://docs.ethers.io/v5/)
+- [@react-navigation/native](https://reactnavigation.org/)
 
-### Now what?
+## Future Enhancements
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+- **Secure Private Key Management**: Use `react-native-keychain` for securely storing private keys.
+- **Multi-Chain Support**: Add support for multiple blockchains like Solana, Tezos, etc.
+- **Wallet Import**: Allow users to import existing wallets using their private key or mnemonic.
+- **Dynamic Gas Fee Estimation**: Implement real-time gas fee estimation based on network conditions.
 
-# Troubleshooting
+## Contributing
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+Feel free to contribute to this project by submitting issues or pull requests. Fork the repository and make your changes in a separate branch.
 
-# Learn More
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add YourFeature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a pull request
 
-To learn more about React Native, take a look at the following resources:
+## License
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is licensed under the MIT License - see the [LICENSE](license.md) file for details.
+
+```
+
+### **Key Points in this README**:
+1. **Overview**: Gives a clear explanation of what the app does.
+2. **Installation & Setup**: Details on how to set up and run the app.
+3. **Usage Instructions**: Step-by-step guide for users on creating wallets, viewing balances, and sending transactions.
+4. **Important Notes**: Alerts users about security concerns in the demo setup (handling private keys, gas fees).
+5. **Future Enhancements**: Suggests improvements for future versions of the app.
+6. **Contributing Section**: Encourages open-source contributions.
