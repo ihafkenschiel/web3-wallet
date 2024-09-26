@@ -1,18 +1,23 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {WalletCreate, Balance} from './components';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {WalletCreate, Balance, GetTestEth} from './components';
+import {RootStackParamList} from './types/navigation';
+import {WalletProvider} from './context/WalletContext';
 
-const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="WalletCreate" component={WalletCreate} />
-        <Drawer.Screen name="Balance" component={Balance} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <WalletProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="WalletCreate" component={WalletCreate} />
+          <Stack.Screen name="Balance" component={Balance} />
+          <Stack.Screen name="GetTestEth" component={GetTestEth} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </WalletProvider>
   );
 };
 
