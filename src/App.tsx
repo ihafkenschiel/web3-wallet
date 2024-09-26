@@ -1,17 +1,17 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {WalletCreate, Balance} from './components';
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Balance" component={Balance} />
-        <Stack.Screen name="WalletCreate" component={WalletCreate} />
-      </Stack.Navigator>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Balance" component={Balance} />
+        <Drawer.Screen name="WalletCreate" component={WalletCreate} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
